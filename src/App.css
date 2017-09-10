@@ -1,0 +1,59 @@
+html,
+body,
+#root,
+.App {
+    height: 100%;
+}
+
+textarea {
+    padding: 8px;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background-color: #444;
+
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.App-logo {
+    height: 80px;
+}
+
+.App-header {
+    background-color: #000;
+    height: 150px;
+    padding-top: 20px;
+}
+
+.App-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+
+    background: #222;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-label {
+    padding: 0 0 4px 4px;
+
+    font-size: 0.8em;
+    text-align: left;
+}

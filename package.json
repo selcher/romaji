@@ -1,0 +1,51 @@
+{
+  "name": "romaji",
+  "productName": "Romaji",
+  "version": "0.0.1",
+  "description": "Electron app to convert romaji to hiragana or katakana",
+  "author": "Selcher",
+  "main": "src/electron-starter.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --x64",
+    "gh-publish": "electron-builder --x64 -p always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selcher/romaji"
+  },
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "romaji",
+    "hiragana",
+    "katakana"
+  ],
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.13",
+    "electron-updater": "^2.8.9"
+  },
+  "devDependencies": {
+    "electron": "^1.7.5",
+    "electron-builder": "^19.27.7"
+  },
+  "build": {
+    "appId": "com.selcher.romaji",
+    "mac": {
+      "category": "public.app-category.electron"
+    },
+    "files": [
+      "src/",
+      "build/"
+    ]
+  }
+}

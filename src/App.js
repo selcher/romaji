@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from './assets/icon.png'
 import './App.css'
 
-import {languages, translations} from './store'
+import translate from './modules/translate'
 import Form from './components/form'
 
 class App extends Component {
@@ -20,86 +20,14 @@ class App extends Component {
         this.handleKatakanaChange = this.handleKatakanaChange.bind(this)
     }
 
-    translateWord(word, srcLang, targetLang) {
-        let result = []
-        let wordToTranslate = word
-
-        for (let entryId in translations) {
-            let entry = translations[entryId]
-
-            if (entry[srcLang] === wordToTranslate) {
-                result.push(entry[targetLang])
-            }
-        }
-
-        return result
-    }
-
-    translate(str, srcLangId, targetLandId) {
-        let word = str
-        let result = []
-
-        while (word.length) {
-            let wordLen = Math.min(3, word.length)
-            let wordToTranslate = ''
-            let tempTrans = []
-
-            while (tempTrans.length === 0 && wordLen) {
-                wordToTranslate = word.slice(0, wordLen)
-
-                if (wordToTranslate[0] === wordToTranslate[1]) {
-                    tempTrans = this.translateWord(
-                        wordToTranslate[0],
-                        srcLangId,
-                        targetLandId
-                    )
-
-                    if (tempTrans.length === 0) {
-                        tempTrans = [
-                            translations[20][targetLandId]
-                        ]
-                    }
-
-                    wordLen = 1
-                }
-                else {
-                    tempTrans = this.translateWord(
-                        wordToTranslate,
-                        srcLangId,
-                        targetLandId
-                    )
-
-                    if (tempTrans.length === 0) {
-                        wordLen--
-                    }
-                }
-            }
-
-            if (tempTrans.length) {
-                result.push(
-                    tempTrans.length > 1 ?
-                    '(' + tempTrans.join('|') + ')' :
-                    tempTrans[0]
-                )
-            } else {
-                result.push(wordToTranslate)
-            }
-
-            word = word.slice(wordLen || 1)
-        }
-
-        return result.join('')
-    }
-
     handleENChange(event) {
         event.preventDefault()
 
-        const srcLangId = languages['en']
+        const srcLang = 'en'
         const en = event.target.value
-        const hiragana = this.translate(en, srcLangId, languages['hiragana'])
-        const katakana = this.translate(en, srcLangId, languages['katakana'])
+        const hiragana = translate(en, srcLang, 'hiragana')
+        const katakana = translate(en, srcLang, 'katakana')
 
-        console.log('EN change:', en, hiragana)
         this.setState({
             en,
             hiragana,
@@ -110,12 +38,11 @@ class App extends Component {
     handleHiraganaChange(event) {
         event.preventDefault()
 
-        const srcLangId = languages['hiragana']
+        const srcLang = 'hiragana'
         const hiragana = event.target.value
-        const en = this.translate(hiragana, srcLangId, languages['en'])
-        const katakana = this.translate(hiragana, srcLangId, languages['katakana'])
+        const en = translate(hiragana, srcLang, 'en')
+        const katakana = translate(hiragana, srcLang, 'katakana')
 
-        console.log('Hiragana change:', hiragana, en)
         this.setState({
             en,
             hiragana,
@@ -126,12 +53,11 @@ class App extends Component {
     handleKatakanaChange(event) {
         event.preventDefault()
 
-        const srcLangId = languages['katakana']
+        const srcLang = 'katakana'
         const katakana = event.target.value
-        const en = this.translate(katakana, srcLangId, languages['en'])
-        const hiragana = this.translate(katakana, srcLangId, languages['hiragana'])
+        const en = translate(katakana, srcLang, 'en')
+        const hiragana = translate(katakana, srcLang, 'hiragana')
 
-        console.log('Katakana change:', katakana, en)
         this.setState({
             en,
             hiragana,
@@ -158,7 +84,7 @@ class App extends Component {
                 handleChange={this.handleKatakanaChange} />
         </div>
       </div>
-    );
+    )
   }
 }
 

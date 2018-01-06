@@ -1,7 +1,7 @@
 {
   "name": "romaji",
   "productName": "Romaji",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Electron app to convert romaji to hiragana or katakana",
   "author": "Selcher",
   "main": "src/electron-starter.js",

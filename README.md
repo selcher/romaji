@@ -1,6 +1,9 @@
 # romaji
 Electron app to convert romaji to hiragana and katakana
 
+Note:
+This app was made for learning electron.
+
 ## Built with
 * [Electron](https://github.com/electron/electron)
 * [Electron Builder](https://github.com/electron-userland/electron-builder)

@@ -5,6 +5,8 @@ import './App.css'
 import translate from './modules/translate'
 import Form from './components/form'
 
+const pkg = require('./../package.json');
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -70,7 +72,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Converter</h2>
+          <h2>{pkg.version}</h2>
         </div>
         <div className="App-content">
             <Form label="Romaji"
